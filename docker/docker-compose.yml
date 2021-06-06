@@ -9,4 +9,4 @@ services:
       MYSQL_PASSWORD: "docker"
       MYSQL_ROOT_PASSWORD: "docker"
     ports:
-      - "5432:543"
+      - "5432:5432"
