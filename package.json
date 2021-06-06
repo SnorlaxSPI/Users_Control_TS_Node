@@ -5,13 +5,15 @@
   "author": "Alessandro Lins <aflinsjr@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "dev:server": "tsnd --respawn --ignore-watch node_modules --transpile-only src/server.ts "
+    "dev:server": "tsnd --respawn --ignore-watch node_modules --transpile-only src/server.ts ",
+    "typeorm": "tsnd node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "express": "^4.17.1",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.34"
+    "typeorm": "^0.2.34",
+    "uuidv4": "^6.2.8"
   },
   "devDependencies": {
     "@types/express": "^4.17.12",

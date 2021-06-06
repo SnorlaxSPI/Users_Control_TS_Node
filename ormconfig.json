@@ -1,14 +1,14 @@
 {
   "type": "postgres",
   "host": "localhost",
-  "port": 5432,
+  "port": 5436,
   "username": "postgres",
   "password": "docker",
-  "database": "yt_permission",  
+  "database": "postgres",  
   "migrations": [
-     "src/database/migrations/**/*.ts"
+     "src/database/migrations/**.ts"
   ],
-  "cli": [
-     "src/database/migrations/*.ts"
-  ]
+  "cli": {
+     "migrationsDir": "src/database/migrations"
+  }
 }
