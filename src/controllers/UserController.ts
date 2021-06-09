@@ -1,33 +1,29 @@
 import { Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
-import { hash } from 'bcryptjs';
-import { UserRepository } from '../repositories/UserRepository';
+import { getRepository } from 'typeorm';
 
-class UserController{
-  async create(request:Request, response:Response) {
-    const userRepository = getCustomRepository(UserRepository);
+import { User } from '../models/User';
 
+class UserController {
+  async store(request:Request, response:Response) {
+
+    const repository = getRepository(User);
     const { name, username, password } = request.body;
 
-    const existUser = await userRepository.findOne({ username });
+    const userExists = await repository.findOne({ where: { username } });
 
-    if(existUser) {
-      return response.status(400).json({ message: 'User already exists!' });
+    if (userExists) {
+      return response.status(409).json({ message: 'User already exists!'});
     }
 
-    const passwordHashed = await hash(password, 8);
-
-    const user = userRepository.create({
+    const user = repository.create({
       name,
       username,
-      password: passwordHashed,
-    });
-    
-    await userRepository.save(user);
+      password,
+     });
 
-    delete user.password;    
+    await repository.save(user);
 
-    return response.status(201).json(user);
+    return response.json(user);
   }
 }
 
