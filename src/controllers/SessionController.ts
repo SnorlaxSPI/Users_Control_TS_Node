@@ -14,7 +14,7 @@ class SessionController {
     const user = await repository.findOne({ where: { username } });
 
     if (!user) {
-      return response.status(409).json({ message: 'User already exists!'});
+      return response.status(409).json({ message: 'User not found!'});
     }
 
     const isValidPassword = await bcryptjs.compare(password, user.password);
