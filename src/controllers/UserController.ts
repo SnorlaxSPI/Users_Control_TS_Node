@@ -23,6 +23,8 @@ class UserController {
 
     await repository.save(user);
 
+    delete user.password;
+
     return response.json(user);
   }
 }
