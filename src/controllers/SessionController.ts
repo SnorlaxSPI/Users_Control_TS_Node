@@ -25,7 +25,7 @@ class SessionController {
 
     const token = jwt.sign({ id: user.id }, "secret", { expiresIn: "365d" });
 
-    delete user.id;
+    delete user.password;
 
     return response.json({
       user,
